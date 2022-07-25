@@ -10,13 +10,10 @@ agent:
     - name: database
       image: 'registry.semaphoreci.com/postgres:11'
 blocks:
-  - name: Hello World
+  - name: ProductPricing
     task:
       jobs:
-        - name: Test job
+        - name: main job
           commands:
             - checkout
-            - echo "Hello from my 'main' container"
-        - name: 'Job #2'
-          commands:
             - docker-compose up
