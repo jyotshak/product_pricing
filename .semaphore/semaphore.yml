@@ -16,7 +16,7 @@ blocks:
         - name: main job
           commands:
             - checkout
-            - docker-compose up
+            - docker-compose build
 promotions:
   - name: Deploy to DigitalOcean
     pipeline_file: deploy-k8s.yml
