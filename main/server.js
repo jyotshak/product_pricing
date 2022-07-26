@@ -19,10 +19,12 @@ app.use(express.urlencoded({ extended: true }));
 const db = require("./app/models");
 const Role = db.role;
 console.log(process.env);
-if (process.env.NODE_DOCKER_PORT === "8080")
+if (process.env.NODE_DOCKER_PORT === "8081")
   db.url = "mongodb://localhost:27017/test_db";
-
-console.log(db.url);
+else {
+  db.url =
+    "mongodb+srv://jkuser:jkuser@cluster0.yc0a7.mongodb.net/?retryWrites=true&w=majority";
+}
 
 db.mongoose
   .connect(db.url, {
@@ -48,7 +50,7 @@ require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.NODE_DOCKER_PORT || 8080;
+const PORT = process.env.PORT|| 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
